@@ -10,9 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   CSS RESET & VARIABLES
-   ============================================================ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -42,7 +39,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Noise texture overlay */
 body::before {
   content: '';
   position: fixed;
@@ -55,16 +51,10 @@ body::before {
   background-size: 256px 256px;
 }
 
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-/* ============================================================
-   THREE.JS CANVAS
-   ============================================================ */
 #hero-canvas {
   position: fixed;
   top: 0; left: 0;
@@ -73,7 +63,6 @@ body::before {
   pointer-events: none;
 }
 
-/* WebGL fallback gradient */
 .webgl-fallback {
   position: fixed;
   inset: 0;
@@ -81,9 +70,6 @@ body::before {
   background: radial-gradient(ellipse at 50% 30%, #111128 0%, var(--bg) 70%);
 }
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -120,7 +106,6 @@ nav.hidden { transform: translateY(-100%); }
 }
 .nav-links a:hover { color: var(--accent); }
 
-/* Hamburger (mobile) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -142,9 +127,6 @@ nav.hidden { transform: translateY(-100%); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ============================================================
-   LAYOUT
-   ============================================================ */
 .content-wrapper {
   position: relative;
   z-index: 1;
@@ -175,7 +157,6 @@ section {
   border-radius: 2px;
 }
 
-/* Reveal animation base */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -187,7 +168,6 @@ section {
   transform: translateY(0);
 }
 
-/* Staggered children */
 .stagger-children .reveal:nth-child(1) { transition-delay: 0s; }
 .stagger-children .reveal:nth-child(2) { transition-delay: 0.08s; }
 .stagger-children .reveal:nth-child(3) { transition-delay: 0.16s; }
@@ -195,9 +175,6 @@ section {
 .stagger-children .reveal:nth-child(5) { transition-delay: 0.32s; }
 .stagger-children .reveal:nth-child(6) { transition-delay: 0.40s; }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -295,9 +272,6 @@ section {
   50%      { opacity: 1; }
 }
 
-/* ============================================================
-   ABOUT SECTION
-   ============================================================ */
 #about {
   background: linear-gradient(180deg, transparent 0%, rgba(18,18,26,0.6) 100%);
 }
@@ -311,9 +285,27 @@ section {
 
 .about-text strong { color: var(--text); font-weight: 600; }
 
-/* ============================================================
-   EXPERIENCE SECTION — TIMELINE
-   ============================================================ */
+/* About layout with photo */
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+.about-photo {
+  flex-shrink: 0;
+  width: 220px;
+  height: 280px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.about-photo:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+}
+
 .timeline { position: relative; padding-left: 2rem; }
 .timeline::before {
   content: '';
@@ -350,31 +342,11 @@ section {
   gap: 0.5rem;
   margin-bottom: 0.25rem;
 }
-.timeline-company {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.timeline-date {
-  font-size: 0.8rem;
-  color: var(--accent);
-  font-weight: 500;
-  white-space: nowrap;
-}
-.timeline-role {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-.timeline-location {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-}
-.timeline-details {
-  list-style: none;
-  margin-top: 0.75rem;
-}
+.timeline-company { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+.timeline-date { font-size: 0.8rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
+.timeline-role { font-size: 0.9rem; color: var(--text-dim); font-style: italic; margin-bottom: 0.5rem; }
+.timeline-location { font-size: 0.8rem; color: var(--text-dim); }
+.timeline-details { list-style: none; margin-top: 0.75rem; }
 .timeline-details li {
   position: relative;
   padding-left: 1rem;
@@ -383,16 +355,8 @@ section {
   color: var(--text-dim);
   line-height: 1.6;
 }
-.timeline-details li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
+.timeline-details li::before { content: '\25B8'; position: absolute; left: 0; color: var(--accent); }
 
-/* ============================================================
-   PROJECTS SECTION
-   ============================================================ */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -415,276 +379,97 @@ section {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
 }
 
-.project-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
-}
-.project-icon {
-  font-size: 1.3rem;
-  color: var(--accent);
-}
+.project-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.project-icon { font-size: 1.3rem; color: var(--accent); }
 .project-badge {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: #facc15;
-  background: rgba(250, 204, 21, 0.1);
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.65rem; font-weight: 600; color: #facc15;
+  background: rgba(250, 204, 21, 0.1); padding: 0.2rem 0.6rem;
+  border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em;
 }
 
-.project-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.project-desc {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.6;
-  flex: 1;
-  margin-bottom: 1rem;
-}
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.project-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.project-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .project-tag {
-  font-size: 0.72rem;
-  padding: 0.2rem 0.55rem;
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.15);
-  border-radius: 4px;
-  color: var(--accent);
-  font-weight: 500;
+  font-size: 0.72rem; padding: 0.2rem 0.55rem;
+  background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 4px; color: var(--accent); font-weight: 500;
 }
 
-.project-links {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 0.9rem;
-  align-items: center;
-  font-size: 0.8rem;
-}
-
+.project-links { display: flex; gap: 0.75rem; margin-top: 0.9rem; align-items: center; font-size: 0.8rem; }
 .project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--text-dim);
-  text-decoration: none;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  transition:
-    color 0.2s,
-    border-color 0.2s,
-    background 0.2s,
-    transform 0.2s;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  color: var(--text-dim); text-decoration: none; padding: 0.25rem 0.7rem;
+  border-radius: 999px; border: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
 }
+.project-link svg { width: 14px; height: 14px; fill: currentColor; }
+.project-link.github { color: var(--accent); border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.06); }
+.project-link:hover { transform: translateY(-1px); background: rgba(59, 130, 246, 0.12); }
 
-.project-link svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.project-link.github {
-  color: var(--accent);
-  border-color: rgba(59, 130, 246, 0.4);
-  background: rgba(59, 130, 246, 0.06);
-}
-
-.project-link:hover {
-  transform: translateY(-1px);
-  background: rgba(59, 130, 246, 0.12);
-}
-
-/* ============================================================
-   SKILLS SECTION
-   ============================================================ */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-category {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5rem;
-}
-.skill-category-title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-}
-.skill-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+.skill-category { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+.skill-category-title { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+.skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .skill-item {
-  font-size: 0.8rem;
-  padding: 0.3rem 0.65rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  color: var(--text-dim);
-  transition: all 0.2s;
+  font-size: 0.8rem; padding: 0.3rem 0.65rem;
+  background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
+  border-radius: 5px; color: var(--text-dim); transition: all 0.2s;
 }
-.skill-item:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: rgba(59, 130, 246, 0.06);
-}
+.skill-item:hover { color: var(--accent); border-color: var(--accent); background: rgba(59, 130, 246, 0.06); }
 
-/* ============================================================
-   HONORS, AWARDS & CERTIFICATIONS
-   ============================================================ */
-.awards-list, .cert-list {
-  margin-top: 1.5rem;
-}
-.awards-list h3, .cert-list h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--text);
-}
-.awards-list ul, .cert-list ul {
-  list-style: none;
-}
+.awards-list, .cert-list { margin-top: 1.5rem; }
+.awards-list h3, .cert-list h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text); }
+.awards-list ul, .cert-list ul { list-style: none; }
 .awards-list li, .cert-list li {
-  position: relative;
-  padding-left: 1rem;
-  margin-bottom: 0.4rem;
-  font-size: 0.85rem;
-  color: var(--text-dim);
+  position: relative; padding-left: 1rem; margin-bottom: 0.4rem;
+  font-size: 0.85rem; color: var(--text-dim);
 }
 .awards-list li::before, .cert-list li::before {
-  content: '◆';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 0.5rem;
-  top: 0.35rem;
+  content: '\25C6'; position: absolute; left: 0; color: var(--accent); font-size: 0.5rem; top: 0.35rem;
 }
 
-/* ============================================================
-   CONTACT SECTION
-   ============================================================ */
-#contact {
-  text-align: center;
-  padding-bottom: 6rem;
-}
-#contact .section-title {
-  display: block;
-  text-align: center;
-}
-#contact .section-title::after {
-  left: 50%;
-  transform: translateX(-50%);
-}
+#contact { text-align: center; padding-bottom: 6rem; }
+#contact .section-title { display: block; text-align: center; }
+#contact .section-title::after { left: 50%; transform: translateX(-50%); }
 
-.contact-text {
-  font-size: 1rem;
-  color: var(--text-dim);
-  max-width: 500px;
-  margin: 0 auto 2rem;
-  line-height: 1.7;
-}
-
+.contact-text { font-size: 1rem; color: var(--text-dim); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
 .contact-email {
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-decoration: none;
-  padding: 0.75rem 2rem;
-  border: 1px solid var(--accent);
-  border-radius: 6px;
-  transition: all 0.25s;
-  margin-bottom: 2rem;
+  display: inline-block; font-size: 1.1rem; font-weight: 600;
+  color: var(--accent); text-decoration: none; padding: 0.75rem 2rem;
+  border: 1px solid var(--accent); border-radius: 6px; transition: all 0.25s; margin-bottom: 2rem;
 }
-.contact-email:hover {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 0 25px var(--accent-glow);
-}
+.contact-email:hover { background: var(--accent); color: #fff; box-shadow: 0 0 25px var(--accent-glow); }
 
-.contact-socials {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
+.contact-socials { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
 .contact-socials a {
-  color: var(--text-dim);
-  transition: color 0.2s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-decoration: none;
-  font-size: 0.85rem;
+  color: var(--text-dim); transition: color 0.2s, transform 0.2s;
+  display: flex; align-items: center; gap: 0.4rem; text-decoration: none; font-size: 0.85rem;
 }
-.contact-socials a:hover {
-  color: var(--accent);
-  transform: translateY(-2px);
-}
-.contact-socials svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
+.contact-socials a:hover { color: var(--accent); transform: translateY(-2px); }
+.contact-socials svg { width: 20px; height: 20px; fill: currentColor; }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  border-top: 1px solid var(--border);
-}
+footer { text-align: center; padding: 2rem; font-size: 0.75rem; color: var(--text-dim); border-top: 1px solid var(--border); }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 768px) {
   nav { padding: 0.75rem 1.25rem; }
   .nav-links {
-    position: fixed;
-    top: 0; right: 0;
-    width: 250px; height: 100vh;
-    flex-direction: column;
-    background: rgba(10, 10, 15, 0.97);
-    backdrop-filter: blur(20px);
-    padding: 5rem 2rem 2rem;
-    gap: 1.25rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
+    position: fixed; top: 0; right: 0; width: 250px; height: 100vh;
+    flex-direction: column; background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(20px); padding: 5rem 2rem 2rem; gap: 1.25rem;
+    transform: translateX(100%); transition: transform 0.3s ease;
     border-left: 1px solid var(--border);
   }
   .nav-links.open { transform: translateX(0); }
   .nav-links a { font-size: 1rem; }
   .hamburger { display: flex; }
-
   section { padding: 3.5rem 1.25rem; }
   .section-title { font-size: 1.4rem; }
-
   .timeline { padding-left: 1.5rem; }
   .timeline-dot { left: -1.5rem; }
   .timeline-header { flex-direction: column; gap: 0.15rem; }
-
+  .about-content { flex-direction: column; align-items: center; text-align: center; }
+  .about-photo { width: 180px; height: 230px; }
   .projects-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
 }
@@ -697,9 +482,6 @@ footer {
 
 <body>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">PG</a>
   <ul class="nav-links" id="navLinks">
@@ -715,42 +497,37 @@ footer {
   </button>
 </nav>
 
-<!-- ============================================================
-     MAIN CONTENT
-     ============================================================ -->
 <div class="content-wrapper">
 
-  <!-- HERO -->
   <section id="hero">
     <p class="hero-greeting">Hi, my name is</p>
     <h1 class="hero-name">Pranav Gunjala</h1>
     <p class="hero-title">Computer Science @ UF — building intelligent systems at the intersection of full-stack development and machine learning.</p>
-    <a href="#projects" class="hero-cta">View My Work ↓</a>
+    <a href="#projects" class="hero-cta">View My Work &#8595;</a>
     <div class="scroll-indicator">
       <span>Scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <h2 class="section-title reveal">About Me</h2>
-    <p class="about-text reveal">
-      I'm a <strong>Computer Science student at the University of Florida</strong> with a passion for building impactful software.
-      I've interned as a back-end developer building APIs that connect social workers to 800+ statewide resources,
-      conducted <strong>ML research</strong> engineering PCA-based alignment metrics and XGBoost models for educational AI,
-      and won hackathons building therapy platforms with computer vision.
-      I work across the stack — from <strong>Node.js and Go</strong> back-ends to <strong>Next.js</strong> front-ends — and
-      I'm always looking for opportunities where I can ship meaningful products and learn from great teams.
-    </p>
+    <div class="about-content reveal">
+      <p class="about-text">
+        I'm a <strong>Computer Science student at the University of Florida</strong> with a passion for building impactful software.
+        I've interned as a back-end developer building APIs that connect social workers to 800+ statewide resources,
+        conducted <strong>ML research</strong> engineering PCA-based alignment metrics and XGBoost models for educational AI,
+        and won hackathons building therapy platforms with computer vision.
+        I work across the stack — from <strong>Node.js and Go</strong> back-ends to <strong>Next.js</strong> front-ends — and
+        I'm always looking for opportunities where I can ship meaningful products and learn from great teams.
+      </p>
+      <img src="data:image/jpeg;base64,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" alt="Pranav Gunjala" class="about-photo" />
+    </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <h2 class="section-title reveal">Experience</h2>
     <div class="timeline stagger-children">
-
-      <!-- Experience 1 -->
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
@@ -765,7 +542,6 @@ footer {
         </ul>
       </div>
 
-      <!-- Experience 2 -->
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
@@ -780,7 +556,6 @@ footer {
         </ul>
       </div>
 
-      <!-- Experience 3 -->
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
@@ -793,16 +568,13 @@ footer {
           <li>Contributed to 20% increase in club membership through advertising and speaker events.</li>
         </ul>
       </div>
-
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <h2 class="section-title reveal">Projects</h2>
     <div class="projects-grid stagger-children">
 
-      <!-- Project 1 -->
       <div class="project-card reveal">
         <div class="project-card-header">
           <span class="project-icon">&#9672;</span>
@@ -817,21 +589,13 @@ footer {
           <span class="project-tag">Computer Vision</span>
         </div>
         <div class="project-links">
-          <a
-            class="project-link github"
-            href="https://github.com/ohmcpatel/parkinsons-therapy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-            </svg>
+          <a class="project-link github" href="https://github.com/ohmcpatel/parkinsons-therapy" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
             <span>View on GitHub</span>
           </a>
         </div>
       </div>
 
-      <!-- Project 2 -->
       <div class="project-card reveal">
         <div class="project-card-header">
           <span class="project-icon">&#9672;</span>
@@ -846,21 +610,13 @@ footer {
           <span class="project-tag">Recharts</span>
         </div>
         <div class="project-links">
-          <a
-            class="project-link github"
-            href="https://github.com/PSG777/Mindful"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-            </svg>
+          <a class="project-link github" href="https://github.com/PSG777/Mindful" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
             <span>View on GitHub</span>
           </a>
         </div>
       </div>
 
-      <!-- Project 3 -->
       <div class="project-card reveal">
         <h3 class="project-title">Noma</h3>
         <p class="project-desc">AI-powered skin cancer detection app. Point your camera at a suspicious lesion and get instant analysis across 7 diagnostic categories with severity indicators and confidence scoring. 83% accuracy on the HAM10000 dataset.</p>
@@ -872,21 +628,13 @@ footer {
           <span class="project-tag">Gemini AI</span>
         </div>
         <div class="project-links">
-          <a
-            class="project-link github"
-            href="https://github.com/ehanrsha/Noma"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-            </svg>
+          <a class="project-link github" href="https://github.com/ehanrsha/Noma" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
             <span>View on GitHub</span>
           </a>
         </div>
       </div>
 
-      <!-- Project 4 -->
       <div class="project-card reveal">
         <div class="project-card-header">
           <span class="project-icon">&#9672;</span>
@@ -900,15 +648,8 @@ footer {
           <span class="project-tag">File I/O</span>
         </div>
         <div class="project-links">
-          <a
-            class="project-link github"
-            href="https://github.com/PSG777/minesweeper"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-            </svg>
+          <a class="project-link github" href="https://github.com/PSG777/minesweeper" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
             <span>View on GitHub</span>
           </a>
         </div>
@@ -917,70 +658,50 @@ footer {
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <h2 class="section-title reveal">Skills</h2>
     <div class="skills-grid stagger-children">
-
       <div class="skill-category reveal">
         <div class="skill-category-title">Languages</div>
         <div class="skill-items">
-          <span class="skill-item">JavaScript</span>
-          <span class="skill-item">TypeScript</span>
-          <span class="skill-item">Python</span>
-          <span class="skill-item">Java</span>
-          <span class="skill-item">C++</span>
-          <span class="skill-item">SQL</span>
+          <span class="skill-item">JavaScript</span><span class="skill-item">TypeScript</span>
+          <span class="skill-item">Python</span><span class="skill-item">Java</span>
+          <span class="skill-item">C++</span><span class="skill-item">SQL</span>
           <span class="skill-item">Go</span>
         </div>
       </div>
-
       <div class="skill-category reveal">
         <div class="skill-category-title">Frameworks & Tools</div>
         <div class="skill-items">
-          <span class="skill-item">Node.js</span>
-          <span class="skill-item">Express.js</span>
-          <span class="skill-item">React</span>
-          <span class="skill-item">Next.js</span>
-          <span class="skill-item">Tailwind CSS</span>
-          <span class="skill-item">Flask</span>
-          <span class="skill-item">MongoDB</span>
-          <span class="skill-item">Git</span>
+          <span class="skill-item">Node.js</span><span class="skill-item">Express.js</span>
+          <span class="skill-item">React</span><span class="skill-item">Next.js</span>
+          <span class="skill-item">Tailwind CSS</span><span class="skill-item">Flask</span>
+          <span class="skill-item">MongoDB</span><span class="skill-item">Git</span>
           <span class="skill-item">Postman</span>
         </div>
       </div>
-
       <div class="skill-category reveal">
         <div class="skill-category-title">ML & AI</div>
         <div class="skill-items">
-          <span class="skill-item">XGBoost</span>
-          <span class="skill-item">scikit-learn</span>
-          <span class="skill-item">NumPy</span>
-          <span class="skill-item">Pandas</span>
-          <span class="skill-item">OpenCV</span>
-          <span class="skill-item">YOLO</span>
+          <span class="skill-item">XGBoost</span><span class="skill-item">scikit-learn</span>
+          <span class="skill-item">NumPy</span><span class="skill-item">Pandas</span>
+          <span class="skill-item">OpenCV</span><span class="skill-item">YOLO</span>
           <span class="skill-item">Vertex AI</span>
         </div>
       </div>
-
       <div class="skill-category reveal">
         <div class="skill-category-title">Cloud Platforms</div>
         <div class="skill-items">
-          <span class="skill-item">Google Cloud</span>
-          <span class="skill-item">AWS EC2</span>
-          <span class="skill-item">AWS S3</span>
-          <span class="skill-item">AWS Lambda</span>
+          <span class="skill-item">Google Cloud</span><span class="skill-item">AWS EC2</span>
+          <span class="skill-item">AWS S3</span><span class="skill-item">AWS Lambda</span>
           <span class="skill-item">Firebase</span>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- HONORS, AWARDS & CERTIFICATIONS -->
   <section id="honors">
     <h2 class="section-title reveal">Honors, Awards & Certifications</h2>
-
     <div class="awards-list reveal">
       <h3>Honors & Awards</h3>
       <ul>
@@ -990,7 +711,6 @@ footer {
         <li>Salutatorian</li>
       </ul>
     </div>
-
     <div class="cert-list reveal">
       <h3>Certifications</h3>
       <ul>
@@ -999,7 +719,6 @@ footer {
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <h2 class="section-title reveal">Get In Touch</h2>
     <p class="contact-text reveal">
@@ -1011,7 +730,7 @@ footer {
         <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub
       </a>
-      <a href="https://linkedin.com/in/pranav-gunjala" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/in/pranav-gunjala-b8143a326/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
       </a>
@@ -1024,29 +743,16 @@ footer {
 
 </div>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer>
   Designed & Built by Pranav Gunjala
 </footer>
 
-<!-- ============================================================
-     THREE.JS — CDN IMPORT
-     ============================================================ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
-/* ============================================================
-   JAVASCRIPT — All site logic
-   ============================================================ */
-
 (() => {
   'use strict';
 
-  /* ----------------------------------------------------------
-     MOBILE NAV
-     ---------------------------------------------------------- */
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('navLinks');
 
@@ -1060,9 +766,6 @@ footer {
     navLinks.classList.remove('open');
   };
 
-  /* ----------------------------------------------------------
-     NAVBAR HIDE/SHOW ON SCROLL
-     ---------------------------------------------------------- */
   let lastScroll = 0;
   const navbar = document.getElementById('navbar');
 
@@ -1076,9 +779,6 @@ footer {
     lastScroll = currentScroll;
   }, { passive: true });
 
-  /* ----------------------------------------------------------
-     INTERSECTION OBSERVER — reveal animations
-     ---------------------------------------------------------- */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1090,13 +790,9 @@ footer {
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ----------------------------------------------------------
-     THREE.JS — Interactive particle field
-     ---------------------------------------------------------- */
   const canvas = document.createElement('canvas');
   canvas.id = 'hero-canvas';
 
-  // WebGL support check
   function webGLSupported() {
     try {
       const c = document.createElement('canvas');
@@ -1108,7 +804,6 @@ footer {
   }
 
   if (!webGLSupported()) {
-    // Fallback: static gradient background
     const fallback = document.createElement('div');
     fallback.className = 'webgl-fallback';
     document.body.prepend(fallback);
@@ -1119,10 +814,7 @@ footer {
 
   function initThreeScene() {
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: false,
-      alpha: true,
-      powerPreference: 'high-performance'
+      canvas: canvas, antialias: false, alpha: true, powerPreference: 'high-performance'
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -1131,11 +823,10 @@ footer {
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 50;
 
-    /* --- Particle system --- */
     const PARTICLE_COUNT = window.innerWidth < 768 ? 2000 : 5000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(PARTICLE_COUNT * 3);
-    const velocities = new Float32Array(PARTICLE_COUNT * 3); // for subtle drift
+    const velocities = new Float32Array(PARTICLE_COUNT * 3);
     const spread = 100;
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -1143,7 +834,6 @@ footer {
       positions[i3]     = (Math.random() - 0.5) * spread;
       positions[i3 + 1] = (Math.random() - 0.5) * spread;
       positions[i3 + 2] = (Math.random() - 0.5) * spread;
-
       velocities[i3]     = (Math.random() - 0.5) * 0.005;
       velocities[i3 + 1] = (Math.random() - 0.5) * 0.005;
       velocities[i3 + 2] = (Math.random() - 0.5) * 0.005;
@@ -1152,19 +842,13 @@ footer {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-      color: 0x3b82f6,
-      size: 0.15,
-      transparent: true,
-      opacity: 0.6,
-      sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
+      color: 0x3b82f6, size: 0.15, transparent: true, opacity: 0.6,
+      sizeAttenuation: true, blending: THREE.AdditiveBlending, depthWrite: false
     });
 
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    /* --- Connecting lines (nearest neighbors) --- */
     const lineGeometry = new THREE.BufferGeometry();
     const MAX_LINES = 800;
     const linePositions = new Float32Array(MAX_LINES * 6);
@@ -1173,17 +857,13 @@ footer {
     lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
 
     const lineMaterial = new THREE.LineBasicMaterial({
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.3,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
+      vertexColors: true, transparent: true, opacity: 0.3,
+      blending: THREE.AdditiveBlending, depthWrite: false
     });
 
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
 
-    /* --- Mouse tracking --- */
     let mouseX = 0, mouseY = 0;
     let targetMouseX = 0, targetMouseY = 0;
 
@@ -1192,47 +872,36 @@ footer {
       targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     }, { passive: true });
 
-    /* --- Scroll parallax --- */
     let scrollY = 0;
-    window.addEventListener('scroll', () => {
-      scrollY = window.pageYOffset;
-    }, { passive: true });
+    window.addEventListener('scroll', () => { scrollY = window.pageYOffset; }, { passive: true });
 
-    /* --- Resize handler --- */
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    /* --- Animation loop --- */
     const CONNECTION_DIST = 8;
     const clock = new THREE.Clock();
 
     function animate() {
       requestAnimationFrame(animate);
-
       const delta = clock.getDelta();
       const elapsed = clock.getElapsedTime();
 
-      // Smooth mouse interpolation
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
 
-      // Camera parallax based on mouse and scroll
       camera.position.x = mouseX * 3;
       camera.position.y = -mouseY * 3 - scrollY * 0.01;
       camera.lookAt(0, -scrollY * 0.01, 0);
 
-      // Particle drift
       const posArr = particles.geometry.attributes.position.array;
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const i3 = i * 3;
         posArr[i3]     += velocities[i3];
         posArr[i3 + 1] += velocities[i3 + 1];
         posArr[i3 + 2] += velocities[i3 + 2];
-
-        // Wrap around
         for (let j = 0; j < 3; j++) {
           if (posArr[i3 + j] > spread / 2)  posArr[i3 + j] = -spread / 2;
           if (posArr[i3 + j] < -spread / 2) posArr[i3 + j] = spread / 2;
@@ -1240,11 +909,9 @@ footer {
       }
       particles.geometry.attributes.position.needsUpdate = true;
 
-      // Slow global rotation
       particles.rotation.y = elapsed * 0.02;
       particles.rotation.x = Math.sin(elapsed * 0.01) * 0.1;
 
-      // Update connecting lines — sample a subset for performance
       let lineIdx = 0;
       const lp = lines.geometry.attributes.position.array;
       const lc = lines.geometry.attributes.color.array;
@@ -1263,8 +930,6 @@ footer {
             const li = lineIdx * 6;
             lp[li]   = posArr[i3];   lp[li+1] = posArr[i3+1]; lp[li+2] = posArr[i3+2];
             lp[li+3] = posArr[j3];   lp[li+4] = posArr[j3+1]; lp[li+5] = posArr[j3+2];
-
-            // Blue tint
             lc[li] = 0.23 * alpha; lc[li+1] = 0.51 * alpha; lc[li+2] = 0.96 * alpha;
             lc[li+3] = 0.23 * alpha; lc[li+4] = 0.51 * alpha; lc[li+5] = 0.96 * alpha;
             lineIdx++;
@@ -1272,17 +937,12 @@ footer {
         }
       }
 
-      // Zero-out unused lines
-      for (let i = lineIdx * 6; i < MAX_LINES * 6; i++) {
-        lp[i] = 0;
-        lc[i] = 0;
-      }
+      for (let i = lineIdx * 6; i < MAX_LINES * 6; i++) { lp[i] = 0; lc[i] = 0; }
 
       lines.geometry.attributes.position.needsUpdate = true;
       lines.geometry.attributes.color.needsUpdate = true;
       lines.geometry.setDrawRange(0, lineIdx * 2);
 
-      // Fade particles as user scrolls past hero
       const heroH = window.innerHeight;
       const opacity = Math.max(0, 1 - scrollY / heroH);
       material.opacity = 0.6 * opacity;
@@ -1293,7 +953,6 @@ footer {
 
     animate();
   }
-
 })();
 </script>
 </body>
